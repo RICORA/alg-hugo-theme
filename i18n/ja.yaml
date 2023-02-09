@@ -64,4 +64,4 @@ footer:
         other: Built with {{ .Generator }}
 
     designedBy:
-        other: テーマ {{ .Theme }} は {{ .DesignedBy }} によって設計されています。
+        other: Theme {{ .Theme }} designed by {{ .DesignedBy }}
