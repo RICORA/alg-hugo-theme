@@ -5,7 +5,7 @@
 <meta name='description' content='{{ $description }}'>
 
 {{- $title := partialCached "data/title" . .RelPermalink -}}
-<title>{{ $title }}</title>
+<title>{{ if .IsHome }}{{ else }}{{ if .Page.Title }}{{ .Page.Title }} - {{ end }}{{ end }}{{ .Site.Title }}</title>
 
 <link rel='canonical' href='{{ .Permalink }}'>
 
