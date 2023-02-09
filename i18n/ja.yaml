@@ -42,6 +42,10 @@ widget:
         title:
             other: カテゴリ
 
+    twitter:
+        title:
+            other: ツイッター
+
 search:
     title:
         other: 検索

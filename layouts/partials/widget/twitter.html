@@ -1,0 +1,13 @@
+<section class="widget twitter">
+    <div class="widget-icon">{{ partial "helper/icon" "brand-twitter" }}</div>
+    <h2 class="widget-title section-title">{{ T "widget.twitter.title" }}</h2>
+    <a id="twitter-timeline" class="twitter-timeline" data-height="500" data-theme="light" href="https://twitter.com/{{ .Params.screenName }}"></a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <script>
+    // dark
+    if (document.documentElement.dataset.scheme == "dark") {
+        document.getElementById("twitter-timeline").setAttribute("data-theme", "dark")
+    }
+    </script>
+</section>
