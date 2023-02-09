@@ -1,0 +1,6 @@
+{{- $iconFile := resources.GetMatch (printf "icons/%s.png" .) -}}
+{{- if $iconFile -}}
+    <img src="{{ printf $iconFile.RelPermalink | relURL }}"></img>
+{{- else -}}
+    {{ partial "helper/icon" "link" }}
+{{- end -}}

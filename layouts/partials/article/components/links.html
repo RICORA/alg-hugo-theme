@@ -1,26 +1,37 @@
 <div class="article-list--compact links">
     {{ range $i, $link := .Params.links }}
         <article>
-            <a href="{{ $link.website }}" target="_blank" rel="noopener">
+            <div class="article">
                 <div class="article-details">
                     <h2 class="article-title">
-                        {{- $link.title -}}
-                    </h2>
-                    <footer class="article-time">
-                        {{ with $link.description }}
-                            {{ . }}
+                        {{ with $link.website }}
+                            <a href="{{ $link.website }}" target="_blank" rel="noopener">{{- $link.title -}}</a>
                         {{ else }}
-                            {{ $link.website }}
+                            {{ $link.title }}
                         {{ end }}
+                    </h2>
+
+                    <footer>
+                        <p class="article-time">
+                            {{ with $link.description }}
+                                {{ . }}
+                            {{ end }}
+                        </p>
+
+                        <div class="social-link">
+                            {{ range $link.social }}
+                                <a href="{{ .link }}" target="_blank" rel="noopener">{{ partial "helper/social" .icon }}</a>
+                            {{ end }}
+                        </div>
                     </footer>
                 </div>
-        
+
                 {{ with $link.image }}
                     <div class="article-image">
                         <img src="{{ . }}" loading="lazy">
                     </div>
                 {{ end }}
-            </a>
+            </div>
         </article>
     {{ end }}
 </div>
