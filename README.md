@@ -1,88 +1,204 @@
-![Stack](https://i.imgur.com/cCiHOGS.jpg)
-# Hugo Theme Stack
+# alg-hugo-theme
 
-> Card-style Hugo theme designed for bloggers.
+## License
 
-## Quickstart
+オリジナルのテーマは[hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)です。クレジット表記`Theme Stack designed by Jimmy`を消さないでください。
 
-Use this template: [CaiJimmy/hugo-theme-stack-starter](https://github.com/CaiJimmy/hugo-theme-stack-starter)
-
-## Demo
-
-[Example Site](https://demo.stack.jimmycai.com/)
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a2d2807a-a905-4bcb-97da-8da8d847da3d/deploy-status)](https://app.netlify.com/sites/hugo-theme-stack/deploys)
-
-## Documentation
-
-[Documentation](https://docs.stack.jimmycai.com/) | [中文文档](https://docs.stack.jimmycai.com/zh/)
-
-## Introduction
-
-Stack is a simple card-style Hugo theme designed for bloggers, some of its features are:
-
-- Responsive images support
-- Lazy load images
-- Dark mode
-- Local search
-- [PhotoSwipe](https://photoswipe.com/) integration
-- Archive page template
-- Full native JavaScript, no jQuery or any other frameworks are used
-- No CSS framework, keep it simple and minimal
-- Properly cropped thumbnails
-- Subsection support
-- Table of contents
-- Multilingual mode and RTL support
+ライセンスはFork元リポジトリの[GNU General Public License v3.0](https://github.com/CaiJimmy/hugo-theme-stack/blob/master/LICENSE)を引き継ぎます。
 
 ## Requirements
 
-It's necessary to use **Hugo Extended ≥ 0.87.0**.
+**Hugo Extended**の0.87.0以上が必要です。
 
 ## Installation
 
-* Route 1: Clone / Download this repository to `themes` folder
-* Route 2: Turn your site into a hugo module and add this theme as a module dependency
+```sh
+git submodule add git@github.com:RICORA/alg-hugo-theme/ themes/alg-hugo-theme
+```
 
- Edit your site config following `exampleSite/config.yaml`.
+元の`config.yaml`をテーマに同梱されている`./exampleSite/config.yaml`で上書きしてください。
 
-*Note: Remove `config.toml` if there is one in the site folder.*
+## Features
 
-Check [documentation](https://docs.stack.jimmycai.com/) for more details.
+独自実装したもののみ記載しています。独自実装でないものについては本家リポジトリのドキュメントを参照してください。
 
-## Copyright
+### Layouts
 
-**Licensed under the GNU General Public License v3.0**
+#### メンバーページ
 
-Please do not remove the "*Theme Stack designed by Jimmy*" text and link.
+linksを改変したものです。メンバーの情報は以下のように記述を追加してください。使用できるアイコンは[Icons](#Icons)のビットマップアイコンを参照してください。
 
-If you want to port this theme to another blogging platform, please let me know🙏.
+```yml
+title: メンバー
+links:
+  - title: 坊っちゃん
+    description: 創立125周年を記念して誕生したイメージキャラクター「坊っちゃん」。夏目漱石の小説『坊っちゃん』で、主人公が本学の前身である東京物理学校を卒業し、松山の中学校に数学の教師として赴任した設定にちなんで誕生しました。
+    image: https://avatars.githubusercontent.com/u/33452053
+    social:
+      - icon: brand-github
+        link: https://github.com/RICORA
+      - icon: brand-twitter
+        link: https://twitter.com/ricora_alg
+      - link: https://tus-ricora.com/
 
-## Sponsoring
+  - title: マドンナちゃん
+    description: 『坊っちゃん』に登場する「マドンナ」をモチーフにサブキャラクターとして誕生した「マドンナちゃん」。東京理科大学が女子中高生向けに行っている「科学のマドンナ」プロジェクトの広報活動などで活躍しています。
+    image: https://avatars.githubusercontent.com/u/33452053
+    social:
+      - icon: brand-zenn
+        link: https://zenn.dev/p/ricora
+      - icon: brand-atcoder
+        link: https://atcoder.jp/users/tourist
 
-If you like this theme, give it a star, and consider supporting its development:
+menu:
+  main:
+    weight: 0
+    params:
+      icon: users
+slug: member
+```
 
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/C0C530AXX)
+#### 記事のEmoji
 
-Your support is greatly appreciated :)
+記事に対してEmojiを設定できます。設定したEmojiはその記事のサムネイル画像として表示されます。
 
-## Thanks to
+Emojiを設定するには記事のヘッダー内に以下のような記述を追加してください。Unicode文字番号を16進数で指定します。
 
-| Project | Description | Licence |
-| ------- | ----------- | ------- |
-| [PhotoSwipe](https://photoswipe.com/) | For the lightbox effect | [MIT](https://github.com/dimsemenov/PhotoSwipe/blob/master/LICENSE) |
-| [Normalize.css](https://github.com/necolas/normalize.css) | - | [MIT](https://github.com/necolas/normalize.css/blob/master/LICENSE.md) |
-| [Node Vibrant](https://github.com/Vibrant-Colors/node-vibrant) | To extract the color from images | [MIT](https://github.com/Vibrant-Colors/node-vibrant/blob/master/LICENSE.md)
-| [Tabler icons](https://github.com/tabler/tabler-icons) | Default menu icons | [MIT](https://github.com/tabler/tabler-icons/blob/master/LICENSE) |
-| [jonsuh/hamburgers](https://github.com/jonsuh/hamburgers) | Hamburger icon of menu | [MIT](https://github.com/jonsuh/hamburgers/blob/master/LICENSE) |
-| [lepture/yue.css](https://github.com/lepture/yue.css) | Part of it is used for styling article content | MIT |
-| [Typlog](https://typlog.com/) | Where the markdown gallery syntax is borrowed from | The author gave me the permission | 
-| [Pure CSS implementation of Google Photos / 500px image layout](https://github.com/xieranmaya/blog/issues/6) | Used for image gallery | - |
+```yml
+emoji: 270F
+```
 
-### References
+#### Google Search Consoleの認証用タグ
 
-Some references that I took while building this theme:
+`config.yaml`に以下のような記述を追加してください。
 
-| Project | Licence|
-| ------- | ------|
-| [artchen/hexo-theme-element](https://github.com/artchen/hexo-theme-element) | [MIT](https://github.com/artchen/hexo-theme-element/blob/master/LICENSE) |
-| [MunifTanjim/minimo](https://github.com/MunifTanjim/minimo) | [MIT](https://github.com/MunifTanjim/minimo/blob/master/LICENSE) |
+```yml
+params:
+  googleSiteVerification: XXXXXXX_XXXX-XXXXXXXXXXXX-XXXXXX-XXXXXXXXXX
+```
+
+#### OGP画像
+
+OGP画像は`./opengraph/`以下にある画像が参照されます。[tcardgen](https://github.com/RICORA/tcardgen)の使用を想定しています。
+
+#### 記事の最終更新日時の表示
+
+記事のヘッダー内の`lastmod`にある日時が表示されます。
+
+```yml
+date: 2023-01-01T00:00:00+09:00
+lastmod: 2023-01-04T18:00:00+09:00
+```
+
+### Shortcodes
+
+#### Linkcard
+
+リンクをOGPを使用してカード形式で表示できます。
+
+本文中で以下のように使用します。
+
+```md
+{{< linkcard url=https://example.com/ >}}
+```
+
+#### Slide
+
+SpeakerDeck, Google Slides, Marp等のスライドの埋め込みを表示できます。
+
+本文中で以下のように使用します。
+
+```md
+{{< slide url=https://example.com/ >}}
+```
+
+#### Schedule
+
+スケジュールをカード形式で表示できます。
+
+記事のヘッダー内に以下のような記述を追加してください。
+
+```yml
+schedule:
+  - title: 春の新歓 オンライン合同説明会
+    date: 4/10 (日) 13:00-13:10
+    detail: 理科大春の新歓公式Zoomにて、私たちの活動紹介をします。
+
+  - title: 新入部員向け説明会
+    date: 4/13 (水) 18:30-21:00
+    detail: 講義棟K405教室にて、プログラミング入門講座を開催します。
+
+  - title: 春の新歓 対面ブース
+    date: 4/17 (日) 10:00-16:00
+    detail: 講義棟K304教室にて、私たちの活動紹介をします。履修相談も大歓迎です。
+```
+
+本文中で以下のように使用します。
+
+```md
+{{< schedule url=https://example.com/ >}}
+```
+
+### Widgets
+
+#### Twitter
+
+Twitterのタイムラインを表示します。
+
+`config.yaml`に以下のような記述を追加してください。
+
+```yml
+params:
+  widgets:
+    homepage:
+      - type: twitter
+        params:
+          screenName: ricora_alg
+```
+
+### Icons
+
+#### 汎用
+
+[tabler-icons](https://github.com/tabler/tabler-icons)のベクター画像を使用しています。
+
+|ファイル名|画像|
+|:-:|:-:|
+|`activity.svg`|![activity.svg](assets/icons/activity.svg)|
+|`brand-youtube.svg`|![brand-youtube.svg](assets/icons/brand-youtube.svg)|
+|`info-circle.svg`|![info-circle.svg](assets/icons/info-circle.svg)|
+|`mail.svg`|![mail.svg](assets/icons/mail.svg)|
+|`news.svg`|![news.svg](assets/icons/news.svg)|
+|`star.svg`|![star.svg](assets/icons/star.svg)|
+|`users.svg`|![users.svg](assets/icons/users.svg)|
+
+#### メンバーページ用
+
+メンバーページではビットマップ画像を使用しています。
+
+|ファイル名|画像|
+|:-:|:-:|
+|`brand-atcoder.png`|<img src="assets/icons/brand-atcoder.png" height="24px">|
+|`brand-github.png`|<img src="assets/icons/brand-github.png" height="24px">|
+|`brand-hatenablog.png`|<img src="assets/icons/brand-hatenablog.png" height="24px">|
+|`brand-note.png`|<img src="assets/icons/brand-note.png" height="24px">|
+|`brand-qiita.png`|<img src="assets/icons/brand-qiita.png" height="24px">|
+|`brand-twitter.png`|<img src="assets/icons/brand-twitter.png" height="24px">|
+|`brand-youtube.png`|<img src="assets/icons/brand-youtube.png" height="24px">|
+|`brand-zenn.png`|<img src="assets/icons/brand-zenn.png" height="24px">|
+
+### Styles
+
+#### Global font family
+
+日本語向けのものに変更してあります。フォントは以下の通りです。
+
+```scss
+:root {
+  --sys-font-family: Helvetica, "Sawarabi Gothic", Meiryo, "メイリオ", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", YuGothic, "游ゴシック", Arial, sans-serif;
+}
+```
+
+## Contribution
+
+コミットメッセージには過去のログを参考に適切そうなPrefixを付け、独自実装した機能についてはREADMEに概要を記載してください。
